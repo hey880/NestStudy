@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { Board } from './board.model';
 import { BoardsService } from './boards.service';
+import { CreateBoardDto } from './dto/create-board.dto';
 
 @Controller('boards')
 export class BoardsController {
@@ -24,14 +25,9 @@ export class BoardsController {
     //create board service를 가져오자
     @Post() 
     createBoard(
-        @Body('title') title: string,
-        @Body('description') description: string 
+        @Body() createBoardDto: CreateBoardDto
     ):Board {
-        //@Body() body는 request body(사용자가 request로 보내온 값)를 가져오는 역할
-        //만약 body중 특정 값만 가져오고 싶다면 @Body('title') title
-        //같은 형식으로 기재하면 된다.
-        //이 기능은 포스트맨으로 테스트 할 수 있다.
-        return this.boardsService.createBoard(title, description);
+        return this.boardsService.createBoard(createBoardDto);
     }
 }
 

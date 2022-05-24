@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Board, BoardStatus } from './board.model';
 import { v1 as uuid } from 'uuid';
+import { CreateBoardDto } from './dto/create-board.dto';
 
 @Injectable()//다른 컴포넌트에서 사용 가능하게 만듦
 export class BoardsService {
@@ -14,7 +15,8 @@ export class BoardsService {
 
     //게시물에 관한 로직을 처리하는 곳은 Service -> 로직 처리 후 Controller에서
     //Service를 불러온다.
-    createBoard(title:string, description:string) {
+    createBoard(createBoardDto: CreateBoardDto) {
+        const { title, description } = createBoardDto;
         const board: Board = {
             //id는 필수이고 유니크 값인데 지금 db를 쓰는 게 아니라서 
             //uuid 모듈을 이용해서 유니크 값으로 만들어줌. npm i uuid --save
