@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { Board } from './board.model';
 import { BoardsService } from './boards.service';
 
@@ -20,5 +20,18 @@ export class BoardsController {
     }
     //위 내용 다음에 CRUD 중 C를 만들기 전에 model을 정의해주면 좋음
     //model은 ~.model.ts 파일로 정의 => boards 폴더에 board.model.ts 파일 생성
+
+    //create board service를 가져오자
+    @Post() 
+    createBoard(
+        @Body('title') title: string,
+        @Body('description') description: string 
+    ):Board {
+        //@Body() body는 request body(사용자가 request로 보내온 값)를 가져오는 역할
+        //만약 body중 특정 값만 가져오고 싶다면 @Body('title') title
+        //같은 형식으로 기재하면 된다.
+        //이 기능은 포스트맨으로 테스트 할 수 있다.
+        return this.boardsService.createBoard(title, description);
+    }
 }
 
