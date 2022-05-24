@@ -1,4 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
+import { Board } from './board.model';
 import { BoardsService } from './boards.service';
 
 @Controller('boards')
@@ -14,7 +15,10 @@ export class BoardsController {
     // controller에 요청이 들어오면 -> service에서 처리(=request를 handle)하여 값을 controller로 return
     //  -> controller에서 값을 클라이언트에 보냄
     @Get('/')
-    getAllBoards() {
+    getAllBoards(): Board[] {//boardsService의 getAllBoards의 return 타입이 Board[]이므로 똑같이 Board[] 타입을 사용.
         return this.boardsService.getAllBoards();
     }
+    //위 내용 다음에 CRUD 중 C를 만들기 전에 model을 정의해주면 좋음
+    //model은 ~.model.ts 파일로 정의 => boards 폴더에 board.model.ts 파일 생성
 }
+
