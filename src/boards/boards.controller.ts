@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { Board } from './board.model';
 import { BoardsService } from './boards.service';
 import { CreateBoardDto } from './dto/create-board.dto';
@@ -28,6 +28,14 @@ export class BoardsController {
         @Body() createBoardDto: CreateBoardDto
     ):Board {
         return this.boardsService.createBoard(createBoardDto);
+    }
+
+    //id 라는 Param을 가져옴.
+    //쿼리스트링에 값 여러개라서 Param을 여러개 가져올 때는 @Param() params: string[]
+    //이렇게 괄호 안에 아무것도 안 써주는 방식으로 사용
+    @Get('/:id')
+    getBoardById(@Param('id') id:string): Board {
+        return this.boardsService.getBoardById(id);
     }
 }
 
