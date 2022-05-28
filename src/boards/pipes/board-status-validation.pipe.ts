@@ -1,5 +1,5 @@
 import { ArgumentMetadata, BadRequestException, PipeTransform } from "@nestjs/common";
-import { BoardStatus } from "../board.model";
+import { BoardStatus } from "../board-status.enum";
 // 모든 pipe는 (아래는 custom pipe임) PipeTransform 인터페이스가 있어야 함.
 // transform(value, metadata) 메서드를 구현해야 함
 // 실제 요청을 받는 핸들러에 이 파이프를 넣어줘야 함. controller쪽에.
