@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Board, BoardStatus } from './board.model';
 import { v1 as uuid } from 'uuid';
 import { CreateBoardDto } from './dto/create-board.dto';
+import { filter } from 'rxjs';
 
 @Injectable()//다른 컴포넌트에서 사용 가능하게 만듦
 export class BoardsService {
@@ -36,6 +37,10 @@ export class BoardsService {
 
     getBoardById(id: string): Board {
         return this.boards.find((board) => board.id === id);
+    }
+
+    deleteBoard(id: string): void {//지우는 건 그냥 지우는 거니까 return 안함
+        this.boards = this.boards.filter((board) => board.id !==id );
     }
 }
 
