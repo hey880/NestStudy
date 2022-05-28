@@ -7,5 +7,6 @@ import { Board } from "./board.entity";
 @EntityRepository(Board) //현재 typeorm 0.3 이상에서는 EntityRepository가
 //deprecated 상태임. 공식문서에는 typeorm 0.2를 사용하여 0.2 사용을 권장.
 export class BoardRepository extends Repository<Board> {
-
+//Typeorm은 Repository 패턴을 사용.
+//Repository에서 DB를 처리하기 위해서는 Service에서 이 Repository를 DI해줘야 한다.
 }
