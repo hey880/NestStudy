@@ -1,11 +1,12 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, UsePipes, ValidationPipe } from '@nestjs/common';
-import { Board, BoardStatus } from './board.model';
+import { BoardStatus } from './board-status.enum';
 import { BoardsService } from './boards.service';
 import { CreateBoardDto } from './dto/create-board.dto';
 import { BoardStatusValidationPipe } from './pipes/board-status-validation.pipe';
 
 @Controller('boards')
 export class BoardsController {
+    /*
     //ts는 원래는 boardsService: BoardsService 를 상단에 정의해야 프로퍼티(ex. this.boardsService)를
     //사용할 수 있는데 생성자 파라미터에 접근제한자를 붙이면 그 파라미터는 자동으로 해당 클래스의
     //프로퍼티로 선언된다. 그래서 아래 생성자 안에 private boardsService로 쓴 것.
@@ -55,5 +56,6 @@ export class BoardsController {
     ): Board {
         return this.boardsService.updateBoardStatus(id, status);
     }
+    */
 }
 
