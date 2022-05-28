@@ -42,5 +42,11 @@ export class BoardsService {
     deleteBoard(id: string): void {//지우는 건 그냥 지우는 거니까 return 안함
         this.boards = this.boards.filter((board) => board.id !==id );
     }
+
+    updateBoardStatus(id: string, status: BoardStatus) : Board {
+        const board = this.getBoardById(id);
+        board.status = status;
+        return board;
+    }
 }
 
