@@ -39,6 +39,9 @@ export class BoardsService {
     //     this.boards.push(board);
     //     return board;
     // }
+    createBoard(createBoardDto: CreateBoardDto): Promise<Board> {
+        return this.boardRepository.createBoard(createBoardDto);
+    }
 
     async getBoardById(id: number): Promise <Board> {
         //typeorm의 findOne 메서드를 사용 => id랑 매칭되는 첫번째 entity를 찾아주는 메서드
