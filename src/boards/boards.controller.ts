@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, UsePipes, ValidationPipe } from '@nestjs/common';
 import { BoardStatus } from './board-status.enum';
 import { Board } from './board.entity';
 import { BoardsService } from './boards.service';
@@ -51,7 +51,11 @@ export class BoardsController {
     // getBoardById(@Param('id') id:string): Board {
     //     return this.boardsService.getBoardById(id);
     // }
-
+    @Delete('/:id') //ParseIntPipe를 파라미터 레벨로 사용-> 파라미터가 숫자로
+    //오지 않으면 에러 발생시킴
+    deleteBoard(@Param('id', ParseIntPipe) id: number): Promise<void> {
+        return this.boardsService.deleteBoard(id);
+    }
     // @Delete('/:id')
     // deleteBoard(@Param('id') id: string): void {
     //     this.boardsService.deleteBoard(id);

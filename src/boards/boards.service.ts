@@ -64,7 +64,15 @@ export class BoardsService {
 
     //     return found;
     // }
+    async deleteBoard(id: number): Promise<void> {
+        const result = await this.boardRepository.delete(id);
 
+        //없는 id를 지우려고 하면 에러는 따로 발생 안되고 result의 affected가 0으로 나오니까
+        //에러를 만들어주자.
+        if(result.affected == 0) {
+            throw new NotFoundException(`Can't find board with id ${id}`)
+        }
+    }
     // deleteBoard(id: string): void {//지우는 건 그냥 지우는 거니까 return 안함
     //     const found = this.getBoardById(id); // => getBoardById에 예외처리 되어있음
     //     this.boards = this.boards.filter((board) => board.id !== found.id );
