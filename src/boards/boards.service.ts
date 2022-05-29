@@ -41,7 +41,7 @@ export class BoardsService {
     // }
 
     async getBoardById(id: number): Promise <Board> {
-        //typeorm의 findOne 메서드를 사용
+        //typeorm의 findOne 메서드를 사용 => id랑 매칭되는 첫번째 entity를 찾아주는 메서드
         const found = await this.boardRepository.findOne(id);
 
         if(!found) {
