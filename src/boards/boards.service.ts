@@ -19,6 +19,11 @@ export class BoardsService {
     //     return this.boards; //위 배열에 있는 모든 값을 가져옴.
     // }
 
+    async getAllBoards() : Promise <Board[]> {
+        return this.boardRepository.find();
+        //find 메서드에 조건을 넣어주면 조건에 맞는 대상만 찾지만
+        //조건을 넣지 않으면 모든 대상을 가져온다.
+    }
     // //게시물에 관한 로직을 처리하는 곳은 Service -> 로직 처리 후 Controller에서
     // //Service를 불러온다.
     // createBoard(createBoardDto: CreateBoardDto) {

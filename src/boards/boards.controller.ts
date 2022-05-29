@@ -24,6 +24,10 @@ export class BoardsController {
     // //위 내용 다음에 CRUD 중 C를 만들기 전에 model을 정의해주면 좋음
     // //model은 ~.model.ts 파일로 정의 => boards 폴더에 board.model.ts 파일 생성
 
+    @Get()
+    getAllBoard(): Promise<Board[]> {
+        return this.boardsService.getAllBoards();
+    }
     // //create board service를 가져오자
     // @Post() 
     // @UsePipes(ValidationPipe)
