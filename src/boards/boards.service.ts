@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { BoardStatus } from './board-status.enum';
 import { v1 as uuid } from 'uuid';
 import { CreateBoardDto } from './dto/create-board.dto';
@@ -77,7 +77,14 @@ export class BoardsService {
     //     const found = this.getBoardById(id); // => getBoardById에 예외처리 되어있음
     //     this.boards = this.boards.filter((board) => board.id !== found.id );
     // }
+    async updateBoardStatus(id: number, status: BoardStatus): Promise<Board> {
+        const board = await this.getBoardById(id);
 
+        board.status =  status;
+        await this.boardRepository.save(board);
+
+        return board;
+    }
     // updateBoardStatus(id: string, status: BoardStatus) : Board {
     //     const board = this.getBoardById(id);
     //     board.status = status;

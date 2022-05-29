@@ -61,6 +61,16 @@ export class BoardsController {
     //     this.boardsService.deleteBoard(id);
     // }
 
+    @Patch('/:id/status')
+    updateBoard(
+        @Param('id', ParseIntPipe) id: number,
+        //status값만 유효성 체크하면 돼서 아래에 BoardStatusValidationPipe는
+        //status 파라미터에 대해, 파라미터 레벨에서 사용
+        @Body('status', BoardStatusValidationPipe) status: BoardStatus
+    ) {
+        return this.boardsService.updateBoardStatus(id, status);
+    }
+
     // @Patch('/:id/status')
     // updateBoard(
     //     @Param('id') id: string,
