@@ -5,8 +5,8 @@ import { AuthService } from './auth.service';
 import { UserRepository } from './user.repository';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([UserRepository])],
+  imports: [TypeOrmModule.forFeature([UserRepository])],//user repository를 module에 등록
   controllers: [AuthController],
   providers: [AuthService]
 })
-export class AuthModule { }
+export class AuthModule {}

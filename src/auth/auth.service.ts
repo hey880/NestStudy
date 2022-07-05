@@ -1,4 +1,4 @@
-import { Injectable, Post } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { AuthCredentialDto } from './dto/auth-credential.dto';
 import { UserRepository } from './user.repository';
@@ -11,6 +11,6 @@ export class AuthService {
     ) {}
 
     async signUp(authCredentialDto:AuthCredentialDto):Promise<void> {
-        return await this.userRepository.createUser(authCredentialDto);
+        return this.userRepository.createUser(authCredentialDto);
     }
 }
